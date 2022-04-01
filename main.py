@@ -40,6 +40,7 @@ policies = {
 # Set start position
 position = [0, 2]
 
+
 # Draw the grid given the grid
 def draw_grid(grid, position):
     # For each row
@@ -60,10 +61,46 @@ def draw_grid(grid, position):
                 pygame.draw.rect(window, (70, 70, 70), (j * grid_size, i * grid_size, grid_size, grid_size))
 
     # Draw current position as a blue square
-    pygame.draw.rect(window, (0, 0, 255), (position[0] * grid_size + 1/6 * grid_size, position[1] * grid_size + 1/6 * grid_size, grid_size * 2/3, grid_size * 2/3))    
+    pygame.draw.rect(window, (0, 0, 255), (position[0] * grid_size + 1/6 * grid_size, position[1] * grid_size + 1/6 * grid_size, grid_size * 2/3, grid_size * 2/3))
+
+    # Draw arrow left
+    pygame.draw.polygon(window, (0, 0, 0), ((position[0] * grid_size + 4/24 * grid_size, position[1] * grid_size + 4/9 * grid_size),
+                                            (position[0] * grid_size + 4/24 * grid_size, position[1] * grid_size + 5/9 * grid_size),
+                                            (position[0] * grid_size + 2/24 * grid_size, position[1] * grid_size + 5/9 * grid_size),
+                                            (position[0] * grid_size + 2/24 * grid_size, position[1] * grid_size + 5/8 * grid_size),
+                                            (position[0] * grid_size + 0/24 * grid_size, position[1] * grid_size + 1/2 * grid_size),
+                                            (position[0] * grid_size + 2/24 * grid_size, position[1] * grid_size + 3/8 * grid_size),
+                                            (position[0] * grid_size + 2/24 * grid_size, position[1] * grid_size + 4/9 * grid_size)))
+
+    # Draw arrow right
+    pygame.draw.polygon(window, (0, 0, 0), ((position[0] * grid_size + 20/24 * grid_size, position[1] * grid_size + 4/9 * grid_size),
+                                            (position[0] * grid_size + 20/24 * grid_size, position[1] * grid_size + 5/9 * grid_size),
+                                            (position[0] * grid_size + 22/24 * grid_size, position[1] * grid_size + 5/9 * grid_size),
+                                            (position[0] * grid_size + 22/24 * grid_size, position[1] * grid_size + 5/8 * grid_size),
+                                            (position[0] * grid_size + 24/24 * grid_size, position[1] * grid_size + 1/2 * grid_size),
+                                            (position[0] * grid_size + 22/24 * grid_size, position[1] * grid_size + 3/8 * grid_size),
+                                            (position[0] * grid_size + 22/24 * grid_size, position[1] * grid_size + 4/9 * grid_size)))
+    # Draw arrow up
+    pygame.draw.polygon(window, (0, 0, 0), ((position[0] * grid_size + 4/9 * grid_size, position[1] * grid_size + 4/24 * grid_size),
+                                            (position[0] * grid_size + 5/9 * grid_size, position[1] * grid_size + 4/24 * grid_size),
+                                            (position[0] * grid_size + 5/9 * grid_size, position[1] * grid_size + 2/24 * grid_size),
+                                            (position[0] * grid_size + 5/8 * grid_size, position[1] * grid_size + 2/24 * grid_size),
+                                            (position[0] * grid_size + 1/2 * grid_size, position[1] * grid_size + 0/24 * grid_size),
+                                            (position[0] * grid_size + 3/8 * grid_size, position[1] * grid_size + 2/24 * grid_size),
+                                            (position[0] * grid_size + 4/9 * grid_size, position[1] * grid_size + 2/24 * grid_size)))
+
+    # Draw arrow down
+    pygame.draw.polygon(window, (0, 0, 0), ((position[0] * grid_size + 4/9 * grid_size, position[1] * grid_size + 20/24 * grid_size),
+                                            (position[0] * grid_size + 5/9 * grid_size, position[1] * grid_size + 20/24 * grid_size),
+                                            (position[0] * grid_size + 5/9 * grid_size, position[1] * grid_size + 22/24 * grid_size),
+                                            (position[0] * grid_size + 5/8 * grid_size, position[1] * grid_size + 22/24 * grid_size),
+                                            (position[0] * grid_size + 1/2 * grid_size, position[1] * grid_size + 24/24 * grid_size),
+                                            (position[0] * grid_size + 3/8 * grid_size, position[1] * grid_size + 22/24 * grid_size),
+                                            (position[0] * grid_size + 4/9 * grid_size, position[1] * grid_size + 22/24 * grid_size)))
 
     # Update the display
     pygame.display.update()
+
 
 # Determine the move using the 80-10-10 rule (80% chance of getting the requested move, 10% for left/right of your requested move)
 def determine_move(chosen_move):
@@ -82,11 +119,18 @@ def determine_move(chosen_move):
     # Check numbers for 5 (right of 4) and 0 (left of 1)
     if determined_move == 0:
         determined_move = 4
+        arrow_left = [11, 11, 11]
     elif determined_move == 5:
         determined_move = 1
+        arrow_up = [11, 11, 11]
+    elif determined_move == 2:
+        arrow_right = [11, 11, 11]
+    elif determined_move == 3:
+        arrow_down = [11, 11, 11]
 
     # Return the move
     return determined_move
+
 
 # Update the position given the current position and the move to make
 def make_move(move, current_position):
@@ -105,6 +149,7 @@ def make_move(move, current_position):
         new_position = current_position
 
     return new_position
+
 
 # Initializing pygame and variables
 pygame.init()

@@ -13,7 +13,7 @@ grid = [
     [0, 0, 0, 0]
     ]
 
-# Define policies. Moves are defined as a number from 1 to 4, where 0 = up, 1 = right, 2 = down, 4 = left
+# Define policies. Moves are defined as a number from 1 to 4, where 1 = up, 2 = right, 3 = down, 4 = left
 policies = {
     "0.01": [
         [2, 2, 2, 0],

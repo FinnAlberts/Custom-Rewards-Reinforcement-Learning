@@ -155,13 +155,13 @@ def make_move(move, current_position):
 
     return new_position
 
+# Ask user for which policy
+chosen_policy = policies[input("Je rijdt in de stad met de auto. Er zijn twee parkeerplaatsen. Eén is erg duur en de andere is goedkoper. \n \nOm bij de parkeerplaats te komen moet je door de stad rijden, maar hoe verder je rijdt, hoe meer benzine je verbruikt. Er is nog een probleem. De politie stuurt je soms een andere richting op dan je eigenlijk wil. De kans is 20 procent dat je de politie tegenkomt en je een andere kant op wordt gestuurd. Ze zullen je echter nooit terugsturen naar waar je vandaan komt. \n \nAls je op de goedkope parkeerplaats komt, krijg je een beloning van 1 punt. Kom je bij de dure parkeerplaats krijg je een straf van 1 punt. \n \nWat wil je als straf voor het verbruiken van benzine? Je kan kiezen voor 0.01, 0.03, 0.4 of 2.0 punten per hokje. ")]
+
 # Initializing pygame and variables
 pygame.init()
 window = pygame.display.set_mode((4 * grid_size, 3 * grid_size))
 pygame.display.set_caption("Reinforcement learning")
-
-# Ask user for which policy
-chosen_policy = policies[input("Je rijdt in de stad met de auto. Er zijn twee parkeerplaatsen. Eén is erg duur en de andere is goedkoper. \n \nOm bij de parkeerplaats te komen moet je door de stad rijden, maar hoe verder je rijdt, hoe meer benzine je verbruikt. Er is nog een probleem. De politie stuurt je soms een andere richting op dan je eigenlijk wil. De kans is 20 procent dat je de politie tegenkomt en je een andere kant op wordt gestuurd. Ze zullen je echter nooit terugsturen naar waar je vandaan komt. \n \nAls je op de goedkope parkeerplaats komt, krijg je een beloning van 1 punt. Kom je bij de dure parkeerplaats krijg je een straf van 1 punt. \n \nWat wil je als straf voor het verbruiken van benzine? Je kan kiezen voor 0.01, 0.03, 0.4 of 2.0 punten per hokje. ")]
 
 # Start running the pygame
 run = True
